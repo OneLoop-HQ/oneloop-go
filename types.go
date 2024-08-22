@@ -5,7 +5,7 @@ package api
 import (
 	json "encoding/json"
 	fmt "fmt"
-	core "sdk/core"
+	core "github.com/OneLoop-HQ/oneloop-go/core"
 )
 
 type CreateApiKeyRequest struct {

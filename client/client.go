@@ -7,11 +7,11 @@ import (
 	context "context"
 	json "encoding/json"
 	errors "errors"
+	oneloopgo "github.com/OneLoop-HQ/oneloop-go"
+	core "github.com/OneLoop-HQ/oneloop-go/core"
+	option "github.com/OneLoop-HQ/oneloop-go/option"
 	io "io"
 	http "net/http"
-	sdk "sdk"
-	core "sdk/core"
-	option "sdk/option"
 )
 
 type Client struct {
@@ -37,7 +37,7 @@ func NewClient(opts ...option.RequestOption) *Client {
 func (c *Client) GetWorkspace(
 	ctx context.Context,
 	opts ...option.RequestOption,
-) (*sdk.RetrieveWorkspaceResponse, error) {
+) (*oneloopgo.RetrieveWorkspaceResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -60,21 +60,21 @@ func (c *Client) GetWorkspace(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -84,7 +84,7 @@ func (c *Client) GetWorkspace(
 		return apiError
 	}
 
-	var response *sdk.RetrieveWorkspaceResponse
+	var response *oneloopgo.RetrieveWorkspaceResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -104,9 +104,9 @@ func (c *Client) GetWorkspace(
 
 func (c *Client) CreateWorkspace(
 	ctx context.Context,
-	request *sdk.CreateWorkspaceRequest,
+	request *oneloopgo.CreateWorkspaceRequest,
 	opts ...option.RequestOption,
-) (*sdk.CreateWorkspaceResponse, error) {
+) (*oneloopgo.CreateWorkspaceResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -129,21 +129,21 @@ func (c *Client) CreateWorkspace(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -153,7 +153,7 @@ func (c *Client) CreateWorkspace(
 		return apiError
 	}
 
-	var response *sdk.CreateWorkspaceResponse
+	var response *oneloopgo.CreateWorkspaceResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -176,7 +176,7 @@ func (c *Client) GetWorkspaceById(
 	ctx context.Context,
 	id string,
 	opts ...option.RequestOption,
-) (*sdk.RetrieveWorkspaceByIdResponse, error) {
+) (*oneloopgo.RetrieveWorkspaceByIdResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -199,21 +199,21 @@ func (c *Client) GetWorkspaceById(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -223,7 +223,7 @@ func (c *Client) GetWorkspaceById(
 		return apiError
 	}
 
-	var response *sdk.RetrieveWorkspaceByIdResponse
+	var response *oneloopgo.RetrieveWorkspaceByIdResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -244,9 +244,9 @@ func (c *Client) GetWorkspaceById(
 func (c *Client) UpdateWorkspace(
 	ctx context.Context,
 	id string,
-	request *sdk.UpdateWorkspaceRequest,
+	request *oneloopgo.UpdateWorkspaceRequest,
 	opts ...option.RequestOption,
-) (*sdk.UpdateWorkspaceResponse, error) {
+) (*oneloopgo.UpdateWorkspaceResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -269,21 +269,21 @@ func (c *Client) UpdateWorkspace(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -293,7 +293,7 @@ func (c *Client) UpdateWorkspace(
 		return apiError
 	}
 
-	var response *sdk.UpdateWorkspaceResponse
+	var response *oneloopgo.UpdateWorkspaceResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -316,7 +316,7 @@ func (c *Client) GetWorkspaceScopes(
 	ctx context.Context,
 	id string,
 	opts ...option.RequestOption,
-) (*sdk.RetrieveAllWorkspaceScopesResponse, error) {
+) (*oneloopgo.RetrieveAllWorkspaceScopesResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -339,21 +339,21 @@ func (c *Client) GetWorkspaceScopes(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -363,7 +363,7 @@ func (c *Client) GetWorkspaceScopes(
 		return apiError
 	}
 
-	var response *sdk.RetrieveAllWorkspaceScopesResponse
+	var response *oneloopgo.RetrieveAllWorkspaceScopesResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -384,9 +384,9 @@ func (c *Client) GetWorkspaceScopes(
 func (c *Client) CreateWorkspaceScopes(
 	ctx context.Context,
 	id string,
-	request *sdk.CreateWorkspaceScopeRequest,
+	request *oneloopgo.CreateWorkspaceScopeRequest,
 	opts ...option.RequestOption,
-) (*sdk.CreateWorkspaceScopeResponse, error) {
+) (*oneloopgo.CreateWorkspaceScopeResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -409,21 +409,21 @@ func (c *Client) CreateWorkspaceScopes(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -433,7 +433,7 @@ func (c *Client) CreateWorkspaceScopes(
 		return apiError
 	}
 
-	var response *sdk.CreateWorkspaceScopeResponse
+	var response *oneloopgo.CreateWorkspaceScopeResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -454,9 +454,9 @@ func (c *Client) CreateWorkspaceScopes(
 
 func (c *Client) CreateApiKey(
 	ctx context.Context,
-	request *sdk.CreateApiKeyRequest,
+	request *oneloopgo.CreateApiKeyRequest,
 	opts ...option.RequestOption,
-) (*sdk.CreateApiKeyResponse, error) {
+) (*oneloopgo.CreateApiKeyResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -479,21 +479,21 @@ func (c *Client) CreateApiKey(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -503,7 +503,7 @@ func (c *Client) CreateApiKey(
 		return apiError
 	}
 
-	var response *sdk.CreateApiKeyResponse
+	var response *oneloopgo.CreateApiKeyResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -526,7 +526,7 @@ func (c *Client) GetApiKeys(
 	ctx context.Context,
 	id string,
 	opts ...option.RequestOption,
-) (*sdk.RetrieveApiKeysResponse, error) {
+) (*oneloopgo.RetrieveApiKeysResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -549,21 +549,21 @@ func (c *Client) GetApiKeys(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -573,7 +573,7 @@ func (c *Client) GetApiKeys(
 		return apiError
 	}
 
-	var response *sdk.RetrieveApiKeysResponse
+	var response *oneloopgo.RetrieveApiKeysResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -596,7 +596,7 @@ func (c *Client) GetApiKeyById(
 	id string,
 	akid string,
 	opts ...option.RequestOption,
-) (*sdk.RetrieveApiKeyByIdResponse, error) {
+) (*oneloopgo.RetrieveApiKeyByIdResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -623,21 +623,21 @@ func (c *Client) GetApiKeyById(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -647,7 +647,7 @@ func (c *Client) GetApiKeyById(
 		return apiError
 	}
 
-	var response *sdk.RetrieveApiKeyByIdResponse
+	var response *oneloopgo.RetrieveApiKeyByIdResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -670,7 +670,7 @@ func (c *Client) DeleteApiKey(
 	id string,
 	akid string,
 	opts ...option.RequestOption,
-) (*sdk.DeleteApiKeyResponse, error) {
+) (*oneloopgo.DeleteApiKeyResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -697,21 +697,21 @@ func (c *Client) DeleteApiKey(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -721,7 +721,7 @@ func (c *Client) DeleteApiKey(
 		return apiError
 	}
 
-	var response *sdk.DeleteApiKeyResponse
+	var response *oneloopgo.DeleteApiKeyResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -743,9 +743,9 @@ func (c *Client) EditApiKey(
 	ctx context.Context,
 	id string,
 	akid string,
-	request *sdk.EditApiKeyRequest,
+	request *oneloopgo.EditApiKeyRequest,
 	opts ...option.RequestOption,
-) (*sdk.EditApiKeyResponse, error) {
+) (*oneloopgo.EditApiKeyResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -772,21 +772,21 @@ func (c *Client) EditApiKey(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -796,7 +796,7 @@ func (c *Client) EditApiKey(
 		return apiError
 	}
 
-	var response *sdk.EditApiKeyResponse
+	var response *oneloopgo.EditApiKeyResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -817,9 +817,9 @@ func (c *Client) EditApiKey(
 
 func (c *Client) VerifyApiKey(
 	ctx context.Context,
-	request *sdk.VerifyApiKeyRequest,
+	request *oneloopgo.VerifyApiKeyRequest,
 	opts ...option.RequestOption,
-) (*sdk.VerifyApiKeyResponse, error) {
+) (*oneloopgo.VerifyApiKeyResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -842,21 +842,21 @@ func (c *Client) VerifyApiKey(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -866,7 +866,7 @@ func (c *Client) VerifyApiKey(
 		return apiError
 	}
 
-	var response *sdk.VerifyApiKeyResponse
+	var response *oneloopgo.VerifyApiKeyResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -890,7 +890,7 @@ func (c *Client) RotateApiKey(
 	id string,
 	akid string,
 	opts ...option.RequestOption,
-) (*sdk.RotateApiKeyResponse, error) {
+) (*oneloopgo.RotateApiKeyResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -917,21 +917,21 @@ func (c *Client) RotateApiKey(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -941,7 +941,7 @@ func (c *Client) RotateApiKey(
 		return apiError
 	}
 
-	var response *sdk.RotateApiKeyResponse
+	var response *oneloopgo.RotateApiKeyResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -963,9 +963,9 @@ func (c *Client) RefillApiKey(
 	ctx context.Context,
 	id string,
 	akid string,
-	request *sdk.RefillApiKeyRequest,
+	request *oneloopgo.RefillApiKeyRequest,
 	opts ...option.RequestOption,
-) (*sdk.RefillApiKeyResponse, error) {
+) (*oneloopgo.RefillApiKeyResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -992,21 +992,21 @@ func (c *Client) RefillApiKey(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -1016,7 +1016,7 @@ func (c *Client) RefillApiKey(
 		return apiError
 	}
 
-	var response *sdk.RefillApiKeyResponse
+	var response *oneloopgo.RefillApiKeyResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -1037,9 +1037,9 @@ func (c *Client) RefillApiKey(
 
 func (c *Client) GenerateLinkToken(
 	ctx context.Context,
-	request *sdk.GenerateLinkTokenRequest,
+	request *oneloopgo.GenerateLinkTokenRequest,
 	opts ...option.RequestOption,
-) (*sdk.GenerateLinkTokenResponse, error) {
+) (*oneloopgo.GenerateLinkTokenResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -1062,21 +1062,21 @@ func (c *Client) GenerateLinkToken(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -1086,7 +1086,7 @@ func (c *Client) GenerateLinkToken(
 		return apiError
 	}
 
-	var response *sdk.GenerateLinkTokenResponse
+	var response *oneloopgo.GenerateLinkTokenResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
@@ -1109,7 +1109,7 @@ func (c *Client) ValidateLinkToken(
 	ctx context.Context,
 	token string,
 	opts ...option.RequestOption,
-) (*sdk.ValidateLinkTokenResponse, error) {
+) (*oneloopgo.ValidateLinkTokenResponse, error) {
 	options := core.NewRequestOptions(opts...)
 
 	baseURL := "https://prod.oneloop.ai"
@@ -1132,21 +1132,21 @@ func (c *Client) ValidateLinkToken(
 		decoder := json.NewDecoder(bytes.NewReader(raw))
 		switch statusCode {
 		case 400:
-			value := new(sdk.BadRequestError)
+			value := new(oneloopgo.BadRequestError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 401:
-			value := new(sdk.UnauthorizedError)
+			value := new(oneloopgo.UnauthorizedError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
 			}
 			return value
 		case 403:
-			value := new(sdk.ForbiddenError)
+			value := new(oneloopgo.ForbiddenError)
 			value.APIError = apiError
 			if err := decoder.Decode(value); err != nil {
 				return apiError
@@ -1156,7 +1156,7 @@ func (c *Client) ValidateLinkToken(
 		return apiError
 	}
 
-	var response *sdk.ValidateLinkTokenResponse
+	var response *oneloopgo.ValidateLinkTokenResponse
 	if err := c.caller.Call(
 		ctx,
 		&core.CallParams{
