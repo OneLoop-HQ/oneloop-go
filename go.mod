@@ -1,4 +1,4 @@
-module sdk
+module github.com/OneLoop-HQ/oneloop-go
 
 go 1.13
 
